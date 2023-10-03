@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <h2>Задание 1</h2>
+        <button v-on:click="reverseText">{{btnText}}</button>
+        <h2>Задание 2 и 3</h2>
+        <ul>
+            <li v-for="item in items">
+                <p v-on:click="delElement(item)">Новый элемент списка - {{item}}</p>
+            </li>
+            <button v-on:click="addElement">Добавить</button>
+        </ul>
+    </div>
+    <!--  -->
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const App = {
+            data() {
+                return {
+                    btnText: "Перевернуть",
+                    items: [1]
+                };
+            },
+            methods: {
+                reverseText() {
+                    this.btnText = this.btnText.split('').reverse().join('');
+                },
+                addElement() {
+                    this.items.push(this.items[this.items.length - 1] + 1 || 1);
+                },
+                delElement(item) {
+                    this.items.splice(this.items.indexOf(item), 1);
+                }
+            },
+        };
+
+        Vue.createApp(App).mount('#app');
+    </script>
+</body>
+
+</html>
